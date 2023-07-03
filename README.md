@@ -14,5 +14,5 @@ Pulmonary nodules and masses are crucial imaging features in lung cancer screeni
 The pipeline of the proposed Scale-aware Test-time Click Adaptation.
 
 ## Usage
-Run train.py to train from scratch on your training set.<br>
-Run sattc to do scare--aware test-time click adaptation on your test set.
+Run <span style="color:#333333">`python train.py` </span> to train from scratch on your training set.<br>
+Run <span style="color:#333333">`python sattc.py` </span> to do scare-aware test-time click adaptation on your test set.
