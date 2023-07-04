@@ -90,7 +90,7 @@ class UNet(nn.Module):
     in_channels : int, optional
         Number of input channels. The default value is 1.
     num_classes : int, optional
-        Number of predicting classes. The default value is 3.
+        Number of predicting classes. The default value is 1.
     num_layers : int, optional
         Number of convolutional layers in downsampling/upsampling blocks.
         The default value is 2.
