@@ -2,10 +2,10 @@
 in_res = (128, 128, 128)
 out_res = (16, 16, 16)
 win_min, win_max = -1350, 150
-model_path = "/mnt/usb2/lizhihao/workspace/SATTC/sattc/logs/20230703-205025/model_19.pth"             # The path of your pre-trained model weights /checkpoints/
-csv_path = "/mnt/usb2/lizhihao/workspace/SATTC/sattc/docs/set.csv"  # The path of set deviding .csv /docs/set.csv
-log_path = "/mnt/usb2/lizhihao/workspace/SATTC/sattc/logs/"               # The path of logs /logs/
-data_base = "/mnt/usb2/lizhihao/workspace/SATTC/sattc/roi_files/"   # The path of data base /roi_files/
+model_path = "/checkpoints/model.pth"             # The path of your pre-trained model weights 
+csv_path = "/docs/set.csv"  # The path of set dividing .csv  
+log_path = "/logs/"               # The path of logs
+data_base = "/roi_files/"   # The path of database
 dataset_list = [1, 2]
 
 # training configs
