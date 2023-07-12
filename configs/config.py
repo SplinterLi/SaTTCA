@@ -2,7 +2,7 @@
 in_res = (128, 128, 128)
 out_res = (16, 16, 16)
 win_min, win_max = -1350, 150
-model_path = "/checkpoints/model.pth"             # The path of your pre-trained model weights 
+model_path = "outputs/checkpoints/model.pth"             # The path of your pre-trained model weights 
 csv_path = "/docs/set.csv"  # The path of set dividing .csv  
 log_path = "/logs/"               # The path of logs
 data_base = "/roi_files/"   # The path of database
