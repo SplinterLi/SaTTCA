@@ -77,8 +77,7 @@ def _test_epoch(df, model, dataloader):
     recall_test_dict = _init_metric_dict()
     precision_test_dict = _init_metric_dict()
     tent_model = _tent_model(model)
-    output_temp = torch.zeros([1, 1, 64, 96, 96])
-    mask_temp = torch.zeros([1, 1, 64, 96, 96])
+
     for idx, sample in enumerate(dataloader):
         images = sample["images"].cuda()
         masks = sample["masks"].cuda()
@@ -94,16 +93,16 @@ def _test_epoch(df, model, dataloader):
         outputs, loss_dict, center_value = tent_model([images, sphere])
         
         # Get metric dicts    
-        dice_dict  = _metric_by_label(mask_temp.cpu().detach().numpy(
-        ), output_temp.float().cpu().detach().numpy(), datasets, dice_by_label)
-        nsd_dict = _metric_by_label(mask_temp.cpu().detach().numpy().astype(np.bool_
-        ), output_temp.float().cpu().detach().numpy().astype(np.bool_), datasets, surface_dice)
-        iou_dict = _metric_by_label(mask_temp.cpu().detach().numpy(
-        ), output_temp.float().cpu().detach().numpy(), datasets, iou_by_label)
-        recall_dict = _metric_by_label(mask_temp.cpu().detach().numpy(
-        ), output_temp.float().cpu().detach().numpy(), datasets, recall_by_label)
-        precision_dict = _metric_by_label(mask_temp.cpu().detach().numpy(
-        ), output_temp.float().cpu().detach().numpy(), datasets, precision_by_label)
+        dice_dict  = _metric_by_label(masks.cpu().detach().numpy(
+        ), (outputs > 0).float().cpu().detach().numpy(), datasets, dice_by_label)
+        nsd_dict = _metric_by_label(masks.cpu().detach().numpy().astype(np.bool_
+        ), (outputs > 0).float().cpu().detach().numpy().astype(np.bool_), datasets, surface_dice)
+        iou_dict = _metric_by_label(masks.cpu().detach().numpy(
+        ), (outputs > 0).float().cpu().detach().numpy(), datasets, iou_by_label)
+        recall_dict = _metric_by_label(masks.cpu().detach().numpy(
+        ), (outputs > 0).float().cpu().detach().numpy(), datasets, recall_by_label)
+        precision_dict = _metric_by_label(masks.cpu().detach().numpy(
+        ), (outputs > 0).float().cpu().detach().numpy(), datasets, precision_by_label)
         for k in loss_dict.keys():
             loss_test_dict[k] = np.append(loss_test_dict[k], loss_dict[k].cpu().item()) 
         for k in dice_dict.keys():
