@@ -126,7 +126,7 @@ def configure_model(model):
     model.requires_grad_(False)
     # configure norm for tent updates: enable grad + force batch statisics
     for m in model.modules():
-        if isinstance(m, nn.BatchNorm2d):
+        if isinstance(m, nn.InstanceNorm3d):
             m.requires_grad_(True)
             # force use of batch stats in train and eval modes
             m.track_running_stats = False
@@ -146,5 +146,5 @@ def check_model(model):
                            "check which require grad"
     assert not has_all_params, "tent should not update all params: " \
                                "check which require grad"
-    has_bn = any([isinstance(m, nn.BatchNorm2d) for m in model.modules()])
+    has_bn = any([isinstance(m, nn.InstanceNorm3d) for m in model.modules()])
     assert has_bn, "tent needs normalization for its optimization"
